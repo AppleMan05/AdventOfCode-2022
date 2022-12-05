@@ -37,4 +37,50 @@ for i in commonThings:
 print(total)
 
 #Part 1 is done
+tmp = []
+x = 0
+def getChunk(list):
+    global x
+    #print(len(list))
+    while x+3 <= len(list):
+        #tmp.append(list[x])
+        #tmp.append(list[x+1])
+        #tmp.append(list[x+2])
+        tmp.append([list[x], list[x+1], list[x+2]])
+        #print(x)
+        x = x + 3
+        if x >= len(list):
+            break
+tmp2 = []
+file = open("/mnt/d/c++ advent of code 2022/day 03/data.txt")
+for line in file.readlines():
+    tmp2.append(line.strip())
 
+getChunk(tmp2)
+#print(tmp2)
+#print(tmp)
+#ok so ive managed to sort the list according to the problem
+commonThings2 = []
+def getCommon2(i1, i2, i3):
+    set1 = set()
+    set2 = set()
+    set3 = set()
+    for character in i1:
+        set1.add(character)
+    for character in i2:
+        set2.add(character)
+    for character in i3:
+        set3.add(character)
+    commonThings2.append(set.intersection(set1, set2, set3))
+
+for i in range(0, len(tmp)):
+    getCommon2(tmp[i][0], tmp[i][1], tmp[i][2])
+
+#print(commonThings2)
+    
+total = 0
+for i in commonThings2:
+
+    total = total + getPriority(i)
+
+print(total)
